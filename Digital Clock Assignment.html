@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: white;
+        }
+
+        .clock-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .clock {
+            display: flex;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .time-segment {
+            font-size: 8rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.7), 
+                         0 0 20px rgba(0, 255, 255, 0.5);
+            position: relative;
+        }
+
+        .colon {
+            font-size: 8rem;
+            margin: 0 10px;
+            color: cyan;
+        }
+
+        .date-display {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .time-segment {
+                font-size: 4rem;
+            }
+            .colon {
+                font-size: 4rem;
+            }
+            .date-display {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .time-segment {
+                font-size: 3rem;
+            }
+            .colon {
+                font-size: 3rem;
+            }
+            .date-display {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="clock-container">
+        <div class="clock">
+            <div id="hours" class="time-segment">00</div>
+            <div class="colon">:</div>
+            <div id="minutes" class="time-segment">00</div>
+            <div class="colon">:</div>
+            <div id="seconds" class="time-segment">00</div>
+        </div>
+        <div id="date" class="date-display">Monday, January 1, 2023</div>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            
+            // Get time components
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            
+            // Get date components
+            const date = now.toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            
+            // Update DOM elements
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+            document.getElementById('date').textContent = date;
+            
+            // Update every second
+            setTimeout(updateClock, 1000);
+        }
+
+        // Initialize clock
+        updateClock();
+    </script>
+</body>
+</html>
+
