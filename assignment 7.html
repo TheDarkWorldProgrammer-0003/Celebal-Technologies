@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Array and String Manipulations</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .example {
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
+        }
+        .code {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            overflow-x: auto;
+        }
+        .output {
+            background-color: #e8f4f8;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>JavaScript Array and String Manipulations</h1>
+        
+        <div class="section">
+            <h2>1. Joining Array Elements</h2>
+            <div class="example">
+                <div class="code">
+                    const myColor = ["Red", "Green", "White", "Black"];<br>
+                    const joinedWithCommas = myColor.join(",");<br>
+                    const joinedWithPlus = myColor.join("+");<br>
+                    console.log(joinedWithCommas);<br>
+                    console.log(joinedWithPlus);
+                </div>
+                <button onclick="joinColors()">Run Example</button>
+                <div id="join-output" class="output"></div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>2. Finding Most Frequent Item</h2>
+            <div class="example">
+                <div class="code">
+                    const arr1 = [3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3];<br>
+                    function findMostFrequent(arr) {<br>
+                    &nbsp;&nbsp;const frequencyMap = {};<br>
+                    &nbsp;&nbsp;let maxCount = 0;<br>
+                    &nbsp;&nbsp;let mostFrequent;<br>
+                    &nbsp;&nbsp;arr.forEach(item => {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;frequencyMap[item] = (frequencyMap[item] || 0) + 1;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;if (frequencyMap[item] > maxCount) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maxCount = frequencyMap[item];<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mostFrequent = item;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;});<br>
+                    &nbsp;&nbsp;return `${mostFrequent} (${maxCount} times)`;<br>
+                    }<br>
+                    console.log(findMostFrequent(arr1));
+                </div>
+                <button onclick="findFrequentItem()">Run Example</button>
+                <div id="frequency-output" class="output"></div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>3. String Truncation</h2>
+            <div class="example">
+                <div class="code">
+                    function truncateString(str, num) {<br>
+                    &nbsp;&nbsp;return str.length > num ? str.slice(0, num) : str;<br>
+                    }<br>
+                    console.log(truncateString("Robin Singh", 4));
+                </div>
+                <button onclick="truncateStringExample()">Run Example</button>
+                <div id="truncate-output" class="output"></div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>4. Capitalizing Words</h2>
+            <div class="example">
+                <div class="code">
+                    function capitalizeWords(str) {<br>
+                    &nbsp;&nbsp;return str.split(' ')<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;.map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;.join(' ');<br>
+                    }<br>
+                    console.log(capitalizeWords('js string exercises'));
+                </div>
+                <button onclick="capitalizeWordsExample()">Run Example</button>
+                <div id="capitalize-output" class="output"></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>5. Finding Elements Between Two Numbers</h2>
+            <div class="example">
+                <div class="code">
+                    function arrBetween(min, max, arr) {<br>
+                    &nbsp;&nbsp;return arr.filter(num => num > min && num < max);<br>
+                    }<br>
+                    console.log(arrBetween(3, 8, [1, 5, 95, 0, 4, 7]));<br>
+                    console.log(arrBetween(1, 10, [1, 10, 25, 8, 11, 6]));<br>
+                    console.log(arrBetween(7, 32, [1, 2, 3, 78]));
+                </div>
+                <button onclick="arrBetweenExample()">Run Example</button>
+                <div id="arrBetween-output" class="output"></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>6. Finding Index of an Element</h2>
+            <div class="example">
+                <div class="code">
+                    function findIndex(arr, item) {<br>
+                    &nbsp;&nbsp;return arr.indexOf(item);<br>
+                    }<br>
+                    console.log(findIndex(["hi", "edabit", "fgh", "abc"], "fgh"));<br>
+                    console.log(findIndex(["Red", "blue", "Blue", "Green"], "blue"));<br>
+                    console.log(findIndex(["a", "g", "y", "d"], "d"));<br>
+                    console.log(findIndex(["Pineapple", "Orange", "Grape", "Apple"], "Pineapple"));
+                </div>
+                <button onclick="findIndexExample()">Run Example</button>
+                <div id="findIndex-output" class="output"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function for joining array elements
+        function joinColors() {
+            const myColor = ["Red", "Green", "White", "Black"];
+            const joinedWithCommas = myColor.join(",");
+            const joinedWithPlus = myColor.join("+");
+            const output = `"${joinedWithCommas}"\n"${joinedWithPlus}"`;
+            document.getElementById('join-output').textContent = output;
+        }
+
+        // Function for finding most frequent item
+        function findFrequentItem() {
+            const arr1 = [3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3];
+            const result = findMostFrequent(arr1);
+            document.getElementById('frequency-output').textContent = result;
+        }
+
+        function findMostFrequent(arr) {
+            const frequencyMap = {};
+            let maxCount = 0;
+            let mostFrequent;
+
+            arr.forEach(item => {
+                frequencyMap[item] = (frequencyMap[item] || 0) + 1;
+                if (frequencyMap[item] > maxCount) {
+                    maxCount = frequencyMap[item];
+                    mostFrequent = item;
+                }
+            });
+
+            return `${mostFrequent} (${maxCount} times)`;
+        }
+
+        // Function for string truncation
+        function truncateStringExample() {
+            const result = truncateString("Robin Singh", 4);
+            document.getElementById('truncate-output').textContent = `"${result}"`;
+        }
+
+        function truncateString(str, num) {
+            return str.length > num ? str.slice(0, num) : str;
+        }
+
+        // Function for capitalizing words
+        function capitalizeWordsExample() {
+            const result = capitalizeWords('js string exercises');
+            document.getElementById('capitalize-output').textContent = `"${result}"`;
+        }
+
+        function capitalizeWords(str) {
+            return str.split(' ')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                .join(' ');
+        }
+
+        // Function for finding elements between two numbers
+        function arrBetweenExample() {
+            const result1 = arrBetween(3, 8, [1, 5, 95, 0, 4, 7]);
+            const result2 = arrBetween(1, 10, [1, 10, 25, 8, 11, 6]);
+            const result3 = arrBetween(7, 32, [1, 2, 3, 78]);
+            const output = `[${result1}]\n[${result2}]\n[${result3}]`;
+            document.getElementById('arrBetween-output').textContent = output;
+        }
+
+        function arrBetween(min, max, arr) {
+            return arr.filter(num => num > min && num < max);
+        }
+
+        // Function for finding index of an element
+        function findIndexExample() {
+            const result1 = findIndex(["hi", "edabit", "fgh", "abc"], "fgh");
+            const result2 = findIndex(["Red", "blue", "Blue", "Green"], "blue");
+            const result3 = findIndex(["a", "g", "y", "d"], "d");
+            const result4 = findIndex(["Pineapple", "Orange", "Grape", "Apple"], "Pineapple");
+            const output = `${result1}\n${result2}\n${result3}\n${result4}`;
+            document.getElementById('findIndex-output').textContent = output;
+        }
+
+        function findIndex(arr, item) {
+            return arr.indexOf(item);
+        }
+    </script>
+</body>
+</html>
