@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git Command Cheat Sheet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #3498db;
+            margin-top: 25px;
+            border-left: 4px solid #3498db;
+            padding-left: 10px;
+        }
+        .command {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 10px 0;
+            border-left: 3px solid #3498db;
+        }
+        .note {
+            background-color: #e8f4fc;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            border-left: 3px solid #2980b9;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        @media print {
+            body {
+                max-width: 100%;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Git Command Cheat Sheet</h1>
+
+    <h2>1. Basic Workflow</h2>
+    <div class="command">
+        git add .<br>
+        git commit -m "Commit message"
+    </div>
+    <div class="note">
+        Stages all changed files and commits them with your message
+    </div>
+
+    <h2>2. Branch Management</h2>
+    <div class="command">
+        git checkout -b new-branch-name<br>
+        # Make changes<br>
+        git add .<br>
+        git commit -m "Changes"<br>
+        git push origin new-branch-name
+    </div>
+    <div class="note">
+        Creates a new branch, makes changes, commits them, and pushes to remote
+    </div>
+
+    <h2>3. Fixing Mistakes</h2>
+    <h3>Commits to wrong branch:</h3>
+    <div class="command">
+        git checkout correct-branch<br>
+        git cherry-pick commit-hash<br>
+        git checkout wrong-branch<br>
+        git reset --hard HEAD~1
+    </div>
+
+    <h3>Restore deleted file:</h3>
+    <div class="command">
+        git checkout HEAD~1 -- path/to/file
+    </div>
+
+    <h3>Revert to previous commit:</h3>
+    <div class="command">
+        git reset --hard commit-hash
+    </div>
+
+    <h2>4. Working with Remotes</h2>
+    <h3>Push new branch:</h3>
+    <div class="command">
+        git push -u origin branch-name
+    </div>
+
+    <h3>Open-source contribution flow:</h3>
+    <ol>
+        <li>Fork the repository on GitHub</li>
+        <li>Clone your fork locally: <span class="command">git clone your-repo-url</span></li>
+        <li>Create feature branch: <span class="command">git checkout -b feature</span></li>
+        <li>Make changes and commit</li>
+        <li>Push to your fork: <span class="command">git push origin feature</span></li>
+        <li>Create pull request from GitHub UI</li>
+    </ol>
+
+    <h2>5. Merge Conflict Resolution</h2>
+    <div class="command">
+        git merge other-branch<br>
+        # Fix conflicts in files (marked by &lt;&lt;&lt;&lt;)<br>
+        git add resolved-files<br>
+        git commit -m "Merge message"
+    </div>
+
+    <footer>
+        Document generated on: <span id="date"></span>
+    </footer>
+
+    <script>
+        document.getElementById('date').textContent = new Date().toLocaleDateString();
+    </script>
+</body>
+</html>
